@@ -17,6 +17,7 @@ const Home: NextPage = () => {
         <h1>Placeholder</h1>
         <ul>
           <li><Link href='/react-country-region-selector'>react-country-region-selector</Link></li>
+          <li><Link href='/HookCountriesPage'>useCountries</Link></li>
         </ul>
       </main>
 

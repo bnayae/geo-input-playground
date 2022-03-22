@@ -4,10 +4,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { useState } from 'react'
-import styles from './index.module.css';
-import { ReactCountryRegionSelector } from '../../components/react-country-region-selector/ReactCountryRegionSelector';
+import { HookCountries } from '../components/use-countries/HookCountries';
 
-const ReactCountryRegionSelectorPage: NextPage = () => {
+const HookCountriesPage: NextPage = () => {
   const [country, setCountry] = useState<string>('');
   const [region, setRegion] = useState<string>('');
   return (
@@ -19,9 +18,9 @@ const ReactCountryRegionSelectorPage: NextPage = () => {
       </Head>
 
       <main className='main'>
-        <h1>DO</h1>
-        <Link href='https://github.com/country-regions/react-country-region-selector'>yarn add react-country-region-selector</Link>
-        <ReactCountryRegionSelector/>
+        <h1>useCountries</h1>
+        <Link href='https://github.com/oktaysenkan/use-countries'>yarn add react-country-region-selector</Link>
+        <HookCountries/>
       </main>
 
       <footer className='footer'>
@@ -31,4 +30,4 @@ const ReactCountryRegionSelectorPage: NextPage = () => {
   )
 }
 
-export default ReactCountryRegionSelectorPage
+export default HookCountriesPage

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ReactCountryRegionSelectorRaw } from './ReactCountryRegionSelectorRaw';
+import { HookCountriesRaw } from './HookCountriesRaw';
 
-export const ReactCountryRegionSelector = styled(ReactCountryRegionSelectorRaw)`
+export const HookCountries = styled(HookCountriesRaw)`
   display: grid;
   grid-auto-flow:column;
   grid-column-gap: 2em;
@@ -10,7 +10,7 @@ export const ReactCountryRegionSelector = styled(ReactCountryRegionSelectorRaw)`
   .geo{
     font-size:0.5cm;
     padding: 0.5em;
-
+    min-width:20em;
   }
 `;
 
