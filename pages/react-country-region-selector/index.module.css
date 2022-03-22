@@ -1,0 +1,6 @@
+.sample {
+    display: grid;
+    grid-column-gap: 1em;
+    grid-auto-flow: column;
+    margin: 2em;
+}
