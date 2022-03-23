@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-country-region-selector';
 import { useState } from 'react'
 import { HookCountries } from '../components/use-countries/HookCountries';
+import { ReactFlagsSelectComponent } from '../components/ReactFlagsSelect/ReactFlagsSelectComponent';
 
 const HookCountriesPage: NextPage = () => {
   return (
@@ -16,9 +17,9 @@ const HookCountriesPage: NextPage = () => {
       </Head>
 
       <main className='main'>
-        <h1>useCountries</h1>
-        <Link href='https://github.com/oktaysenkan/use-countries'>yarn add react-country-region-selector</Link>
-        <HookCountries/>
+        <h1>ReactFlagsSelect</h1>
+        <Link href='https://github.com/ekwonye-richard/react-flags-select'>yarn add react-country-region-selector</Link>
+        <ReactFlagsSelectComponent/>
       </main>
 
       <footer className='footer'>

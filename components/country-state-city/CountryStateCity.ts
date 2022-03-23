@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { HookCountriesRaw } from "./HookCountriesRaw";
+import { CountryStateCityRaw } from "./CountryStateCityRaw";
 
-export const HookCountries = styled(HookCountriesRaw)`
+export const CountryStateCity = styled(CountryStateCityRaw)`
   display: grid;
   grid-auto-flow: column;
   grid-column-gap: 2em;

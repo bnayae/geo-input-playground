@@ -8,8 +8,6 @@ import styles from './index.module.css';
 import { ReactCountryRegionSelector } from '../components/react-country-region-selector/ReactCountryRegionSelector';
 
 const ReactCountryRegionSelectorPage: NextPage = () => {
-  const [country, setCountry] = useState<string>('');
-  const [region, setRegion] = useState<string>('');
   return (
     <div className='container'>
       <Head>
