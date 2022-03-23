@@ -70,12 +70,12 @@ export const GoogleAddressRaw = ({ className }: IWithClass) => {
       </div>
       <Script
         id="maps.googleapis.com"
-        strategy="lazyOnload"
-        src={`https://maps.googleapis.com/maps/api/js?libraries=places&key=${api_key}`}
+        strategy="beforeInteractive"
+        src={`https://maps.googleapis.com/maps/api/js?key=${api_key}&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC`}
       />
       <Script
         strategy="beforeInteractive"
-        src={`    "use strict";
+        src={`"use strict";
 
         function initMap() {
           const CONFIGURATION = {
@@ -151,6 +151,7 @@ export const GoogleAddressRaw = ({ className }: IWithClass) => {
             marker.setVisible(true);
           }
         }`}
+        async
       />
     </div>
   );
