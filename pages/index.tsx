@@ -15,6 +15,9 @@ const Home: NextPage = () => {
         <h1>Geo Samples</h1>
         <ul>
           <li>
+            <Link href="/GooglePlacesWithMapPage">Google API Places + Map</Link>
+          </li>
+          <li>
             <Link href="/GooglePlacesPage">Google API Places</Link>
           </li>
           <li>
