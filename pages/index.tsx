@@ -12,8 +12,15 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="main">
-        <h1>Placeholder</h1>
+        <h1>Geo Samples</h1>
         <ul>
+          <li>
+            <Link href="/GoogleAddressPage">Google API Address Suggest</Link>
+          </li>
+          <li>
+            <Link href="/GoogleCitySuggestPage">Google API City Suggest</Link>
+          </li>
+          <hr />
           <li>
             <Link href="/react-country-region-selector">
               react-country-region-selector
