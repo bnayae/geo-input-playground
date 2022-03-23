@@ -1,5 +1,5 @@
 import { City, Country, State } from "country-state-city";
-import { ICountry, IState } from "country-state-city/dist/lib/interface";
+import { ICity, ICountry, IState } from "country-state-city/dist/lib/interface";
 import Fuse from "fuse.js";
 import { useEffect, useMemo, useState } from "react";
 import Select, {
@@ -14,11 +14,6 @@ interface IWithClass {
   className?: string;
 }
 
-// interface IOption {
-//   value: string;
-//   label: string;
-// }
-
 enum InputKind {
   set = "set-value",
   change = "input-change",
@@ -29,13 +24,9 @@ enum InputKind {
 export const CountryStateCityRaw = ({ className }: IWithClass) => {
   const [country, setCountry] = useState<string | undefined>("US");
   const [state, setState] = useState<string | undefined>();
-  // const [city, setCity] = useState<ICity | undefined>();
+  const [city, setCity] = useState<ICity | undefined>();
 
   const countries = Country.getAllCountries(); // , languages, country, setCountry, language, setLanguage } =
-  const cities = City.getAllCities();
-  console.log("## Cities", cities.length);
-  // console.log(State.getAllStates());
-  // console.log(City.getCitiesOfCountry("IL"));
 
   const [search, setSearch] = useState<ICountry[]>(countries);
 
@@ -45,14 +36,29 @@ export const CountryStateCityRaw = ({ className }: IWithClass) => {
 
   const animatedComponents = makeAnimated();
 
-  const selectedCountries = countries.find((c) => c.isoCode === country);
+  const selectedCountry = countries.find((c) => c.isoCode === country);
   const states = useMemo(
     () => State.getStatesOfCountry(country ?? ""),
     [country]
   );
-  const selectedStates = useMemo(
+  const selectedState = useMemo(
     () => states.find((c) => c.isoCode === state),
     [states, state]
+  );
+
+  const cities = useMemo(
+    () => City.getCitiesOfState(country ?? "", state ?? ""),
+    [country, state]
+  );
+  const selectedCity = useMemo(
+    () =>
+      cities.find(
+        (c) =>
+          c.countryCode === city?.countryCode &&
+          c.stateCode === city.stateCode &&
+          c.name === city.name
+      ),
+    [cities, city]
   );
 
   const fuseCountries = new Fuse(countries, {
@@ -84,19 +90,18 @@ export const CountryStateCityRaw = ({ className }: IWithClass) => {
     newValue: OnChangeValue<IState, false>,
     actionMeta: ActionMeta<IState>
   ) => {
+    if (newValue?.isoCode !== state) setCity(undefined);
     setState(newValue?.isoCode);
     // setSearch(countries);
   };
 
-  // const handleCityChanged = (
-  //   newValue: OnChangeValue<ICity, false>,
-  //   actionMeta: ActionMeta<ICity>
-  // ) => {
-  //   setCity(newValue as ICity);
-  //   // setSearch(countries);
-  // };
-
-  // const options: IOption[] = countries.map((c) => ({ value: c.code, label: c.name }));
+  const handleCityChanged = (
+    newValue: OnChangeValue<ICity, false>,
+    actionMeta: ActionMeta<ICity>
+  ) => {
+    setCity(newValue as ICity);
+    // setSearch(countries);
+  };
 
   const getLabel = (country: ICountry | undefined) => {
     if (country == null) return "";
@@ -137,7 +142,7 @@ export const CountryStateCityRaw = ({ className }: IWithClass) => {
     <div className={className}>
       <Select<ICountry>
         className="countries geo"
-        defaultValue={selectedCountries}
+        defaultValue={selectedCountry}
         onChange={handleCountryChanged}
         onInputChange={handleCountryInput}
         onBlur={handleBlur}
@@ -156,15 +161,13 @@ export const CountryStateCityRaw = ({ className }: IWithClass) => {
       <Select<IState>
         className="states geo"
         // defaultValue={selectedStates}
-        value={selectedStates}
+        value={selectedState}
         onChange={handleStateChanged}
         formatOptionLabel={(s) => s.name}
         filterOption={(s, v) =>
           s.data.name.toLowerCase().indexOf(v.toLowerCase()) != -1
         }
         getOptionValue={(m) => m.isoCode}
-        isDisabled={!countries?.length}
-        isLoading={!countries?.length}
         isClearable={true}
         isRtl={false}
         isSearchable={true}
@@ -172,7 +175,7 @@ export const CountryStateCityRaw = ({ className }: IWithClass) => {
         options={states}
         components={animatedComponents}
       />
-      {/* <Select<ICity>
+      <Select<ICity>
         className="cities geo"
         // defaultValue={selectedStates}
         value={city}
@@ -181,15 +184,13 @@ export const CountryStateCityRaw = ({ className }: IWithClass) => {
         filterOption={(s, v) =>
           s.data.name.toLowerCase().indexOf(v.toLowerCase()) != -1
         }
-        isDisabled={!countries?.length}
-        isLoading={!countries?.length}
         isClearable={true}
         isRtl={false}
         isSearchable={true}
         name="cities"
         options={cities}
         components={animatedComponents}
-      /> */}
+      />
     </div>
   );
 };
