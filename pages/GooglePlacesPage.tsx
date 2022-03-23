@@ -1,9 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { GoogleAddress } from "../components/GoogleAddress/GoogleAddress";
+import { GooglePlaces } from "../components/GooglePlaces/GooglePlaces";
 
-const GoogleAddressPage: NextPage = () => {
+const GooglePlacesPage: NextPage = () => {
   return (
     <div className="container">
       <Head>
@@ -18,12 +18,11 @@ const GoogleAddressPage: NextPage = () => {
       /> */}
 
       <main className="main">
-        <h1>Google API City Suggest</h1>
-        <h4>Popup blocker should be disable</h4>
-        <Link href="https://console.cloud.google.com/google/maps-apis/build/address-selection?project=global-walker-345009">
-          Google Maps Docs
+        <h1>Google API Places</h1>
+        <Link href="https://www.npmjs.com/package/@react-google-maps/api">
+          @react-google-maps/api
         </Link>
-        <GoogleAddress />
+        <GooglePlaces />
       </main>
 
       <footer className="footer">
@@ -33,4 +32,4 @@ const GoogleAddressPage: NextPage = () => {
   );
 };
 
-export default GoogleAddressPage;
+export default GooglePlacesPage;

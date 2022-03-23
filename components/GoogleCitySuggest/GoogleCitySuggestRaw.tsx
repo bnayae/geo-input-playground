@@ -7,7 +7,7 @@ interface IWithClass {
 }
 
 export const GoogleCitySuggestRaw = ({ className }: IWithClass) => {
-  const api_key = process.env.NEXT_PUBLIC_GOOGLE_MAP_KEY;
+  const api_key = process.env.API_KEY || process.env.NEXT_PUBLIC_API_KEY;
   const [city, setCity] = useState<Suggest | undefined>();
 
   const handleChanged = (newValue: Suggest) => {
