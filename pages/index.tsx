@@ -20,13 +20,17 @@ const Home: NextPage = () => {
           <li>
             <Link href="/GooglePlacesPage">Google API Places</Link>
           </li>
+          <hr />
+          <li>
+            <Link href="/CountryStateCityPage">country-state-city</Link>
+          </li>
+          <hr />
           <li>
             <Link href="/GoogleAddressPage">Google API Address Suggest</Link>
           </li>
           <li>
             <Link href="/GoogleCitySuggestPage">Google API City Suggest</Link>
           </li>
-          <hr />
           <li>
             <Link href="/react-country-region-selector">
               react-country-region-selector
@@ -37,9 +41,6 @@ const Home: NextPage = () => {
           </li>
           <li>
             <Link href="/ReactFlagsSelectPage">ReactFlagsSelect</Link>
-          </li>
-          <li>
-            <Link href="/CountryStateCityPage">country-state-city</Link>
           </li>
         </ul>
       </main>
