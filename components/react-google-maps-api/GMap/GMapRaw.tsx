@@ -2,6 +2,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import React, { useCallback } from "react";
 import JSONPretty from "react-json-pretty";
 import { IWithClass } from "../../../contracts/IWithClass";
+import { IPlace } from "../IPlace";
 
 // Docs: https://react-google-maps-api-docs.netlify.app/
 // Options: https://developers.google.com/maps/documentation/javascript/reference/map#MapOptions.fullscreenControl
@@ -9,7 +10,7 @@ import { IWithClass } from "../../../contracts/IWithClass";
 // https://developers.google.com/maps/documentation/places/web-service/details#PlaceDetailsResponses
 
 interface IGMap extends IWithClass {
-  location?: google.maps.LatLngLiteral;
+  place?: IPlace;
 }
 
 const containerStyle = {
@@ -17,12 +18,9 @@ const containerStyle = {
   height: "600px",
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523,
-};
+export const GMapRaw = ({ className, place }: IGMap) => {
+  const location = place?.geometry.location;
 
-export const GMapRaw = ({ className, location }: IGMap) => {
   const onLoadMap = useCallback((map) => {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
@@ -30,14 +28,21 @@ export const GMapRaw = ({ className, location }: IGMap) => {
 
   const onUnmount = useCallback((map) => {}, []);
 
+  let zoom = 3;
+  if (place?.types.indexOf("country") != -1) zoom = 5;
+  else if (place?.types.indexOf("locality") != -1) zoom = 12;
+  else if (place?.types.indexOf("route") != -1) zoom = 16;
+  else if (place?.types.indexOf("street_address") != -1) zoom = 17;
+
   return (
     <div className={className}>
+      <h4>{zoom}</h4>
       <JSONPretty data={location} />
       <GoogleMap
         mapContainerStyle={containerStyle}
         mapContainerClassName="map-container"
         center={location}
-        zoom={8}
+        zoom={zoom}
         onLoad={onLoadMap}
         onUnmount={onUnmount}
         clickableIcons={false}

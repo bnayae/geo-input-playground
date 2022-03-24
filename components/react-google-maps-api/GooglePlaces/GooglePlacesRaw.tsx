@@ -2,7 +2,7 @@ import { Autocomplete, useLoadScript } from "@react-google-maps/api";
 import React, { KeyboardEvent, useState } from "react";
 import JSONPretty from "react-json-pretty";
 import { IWithClass } from "../../../contracts/IWithClass";
-import { ISuggest } from "../ISuggest";
+import { IPlace } from "../IPlace";
 import { PLACE_FIELDS } from "../PLACE_FIELDS";
 import { scriptOptions } from "../scriptOptions";
 
@@ -11,7 +11,7 @@ export const GooglePlacesRaw = ({ className }: IWithClass) => {
   const [autocomplete, setAutocomplete] = useState<
     google.maps.places.Autocomplete | undefined
   >();
-  const [place, setPlace] = useState<ISuggest | undefined>();
+  const [place, setPlace] = useState<IPlace | undefined>();
 
   // Handle the keypress for input
   const onKeypress = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -28,7 +28,7 @@ export const GooglePlacesRaw = ({ className }: IWithClass) => {
 
   const onPlaceChanged = () => {
     if (autocomplete) {
-      const res: ISuggest = (autocomplete as any).getPlace();
+      const res: IPlace = (autocomplete as any).getPlace();
       setPlace(res);
     }
   };

@@ -4,7 +4,7 @@ import JSONPretty from "react-json-pretty";
 import { googleMapsApiKey } from "../../../contracts/googleMapsApiKey";
 import { IWithClass } from "../../../contracts/IWithClass";
 import { GMap } from "../GMap/GMap";
-import { ISuggest } from "../ISuggest";
+import { IPlace } from "../IPlace";
 import { PLACE_FIELDS } from "../PLACE_FIELDS";
 
 // Docs: https://react-google-maps-api-docs.netlify.app/
@@ -15,7 +15,7 @@ export const GooglePlacesWithMapRaw = ({ className }: IWithClass) => {
   const [autocomplete, setAutocomplete] = useState<
     google.maps.places.Autocomplete | undefined
   >();
-  const [place, setPlace] = useState<ISuggest | undefined>();
+  const [place, setPlace] = useState<IPlace | undefined>();
 
   const location = useMemo(() => {
     if (!place) return undefined;
@@ -38,7 +38,7 @@ export const GooglePlacesWithMapRaw = ({ className }: IWithClass) => {
 
   const onPlaceChanged = () => {
     if (autocomplete) {
-      const res: ISuggest = (autocomplete as any).getPlace();
+      const res: IPlace = (autocomplete as any).getPlace();
       setPlace(res);
     }
   };
@@ -73,7 +73,7 @@ export const GooglePlacesWithMapRaw = ({ className }: IWithClass) => {
             </Autocomplete>
             <JSONPretty data={place} />
           </div>
-          <GMap className="map" location={location} />
+          <GMap className="map" place={place} />
         </div>
       </LoadScript>
     </div>

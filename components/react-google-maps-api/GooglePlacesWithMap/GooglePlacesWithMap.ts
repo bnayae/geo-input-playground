@@ -16,4 +16,8 @@ export const GooglePlacesWithMap = styled(GooglePlacesWithMapRaw)`
       grid-area: map;
     }
   }
+
+  .form-input {
+    min-width: 15cm;
+  }
 `;
