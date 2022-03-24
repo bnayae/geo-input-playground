@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { GooglePlacesWithMap } from "../components/GooglePlacesWithMap/GooglePlacesWithMap";
+import { GooglePlacesWithMap } from "../components/react-google-maps-api/GooglePlacesWithMap/GooglePlacesWithMap";
 
 const GooglePlacesWithMapPage: NextPage = () => {
   return (
