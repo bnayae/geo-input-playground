@@ -18,6 +18,16 @@ const Home: NextPage = () => {
             <Link href="/GooglePlacesWithMapPage">Google API Places + Map</Link>
           </li>
           <li>
+            <Link href="/GooglePlacesWithMapCityPage">
+              Google API Places + Map (Cities)
+            </Link>
+          </li>
+          <li>
+            <Link href="/GooglePlacesWithMapStatePage">
+              Google API Places + Map (States)
+            </Link>
+          </li>
+          <li>
             <Link href="/GooglePlacesPage">Google API Places</Link>
           </li>
           <hr />

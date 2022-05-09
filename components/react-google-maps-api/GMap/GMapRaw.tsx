@@ -1,6 +1,5 @@
 import { GoogleMap, Marker } from "@react-google-maps/api";
 import React, { useCallback } from "react";
-import JSONPretty from "react-json-pretty";
 import { IWithClass } from "../../../contracts/IWithClass";
 import { IPlace } from "../IPlace";
 
@@ -29,15 +28,19 @@ export const GMapRaw = ({ className, place }: IGMap) => {
   const onUnmount = useCallback((map) => {}, []);
 
   let zoom = 3;
-  if (place?.types.indexOf("country") != -1) zoom = 5;
+  if (place?.types.indexOf("country") != -1) zoom = 4;
+  else if (place?.types.indexOf("administrative_area_level_1") != -1) zoom = 4;
+  else if (place?.types.indexOf("administrative_area2") != -1) zoom = 7;
   else if (place?.types.indexOf("locality") != -1) zoom = 12;
+  else if (place?.types.indexOf("sublocality") != -1) zoom = 14;
   else if (place?.types.indexOf("route") != -1) zoom = 16;
   else if (place?.types.indexOf("street_address") != -1) zoom = 17;
+  else if (place?.types.indexOf("postal_code") != -1) zoom = 18;
 
   return (
     <div className={className}>
-      <h4>{zoom}</h4>
-      <JSONPretty data={location} />
+      <h4>Zoom: {zoom}</h4>
+      {/* <JSONPretty data={location} /> */}
       <GoogleMap
         mapContainerStyle={containerStyle}
         mapContainerClassName="map-container"

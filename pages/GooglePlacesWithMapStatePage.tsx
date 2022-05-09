@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { GooglePlacesWithMaps } from "../components/react-google-maps-api/GooglePlacesWithMap/GooglePlacesWithMaps";
+import { GooglePlacesWithMap } from "../components/react-google-maps-api/GooglePlacesWithMap/GooglePlacesWithMap";
+import { GooglePlaceTypeFilter } from "../components/react-google-maps-api/GooglePlacesWithMap/GooglePlaceTypeFilter";
 
 const GooglePlacesWithMapPage: NextPage = () => {
   return (
@@ -22,7 +23,9 @@ const GooglePlacesWithMapPage: NextPage = () => {
         <Link href="https://www.npmjs.com/package/@react-google-maps/api">
           @react-google-maps/api
         </Link>
-        <GooglePlacesWithMaps />
+        <GooglePlacesWithMap
+          filter={[GooglePlaceTypeFilter.administrative_area_level_1]}
+        />
       </main>
 
       <footer className="footer">
